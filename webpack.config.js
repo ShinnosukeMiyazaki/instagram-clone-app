@@ -5,12 +5,16 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/client/index.tsx",
   output: {
     path: `${__dirname}/public`,
     filename: "bundle.js",
   },
   mode: "development",
+  devServer: {
+    historyApiFallback: true,
+    port: 4000,
+  },
   module: {
     rules: [
       {
@@ -29,7 +33,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jps|png|svg|gif|jpg|jpeg)$/,
+        test: /\.(jps|png|svg|gif|jpg|jpeg)$/i,
         use: ["url-loader", "img-loader"],
       },
     ],
